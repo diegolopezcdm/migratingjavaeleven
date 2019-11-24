@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 
 import com.sun.crypto.provider.SunJCE;
 
-import sun.misc.BASE64Encoder;
-//mport java.util.Base64;
-import sun.reflect.Reflection;
-//import java.lang.StackWalker;
+//import sun.misc.BASE64Encoder;
+import java.util.Base64;
+//import sun.reflect.Reflection;
+import java.lang.StackWalker;
 
 public class App {
 
@@ -37,7 +37,7 @@ public class App {
     }
 
     private static void getCallStackClassNames() {
-        try {
+        /*try {
             StringBuffer sbStack = new StringBuffer();
             int i = 0;
             Class<?> caller = Reflection.getCallerClass(i++);
@@ -50,15 +50,15 @@ public class App {
             LOGGER.info("2. Call Stack:\n{}", sbStack);
         } catch (Throwable e) {
             LOGGER.error(e.toString());
-        }
-        /*try {
+        }*/
+        try {
             StringBuffer sbStack = new StringBuffer();
             StackWalker sw = StackWalker.getInstance();
             sw.forEach(s->sbStack.append(s));
             LOGGER.info("2. Call Stack:\n{}", sbStack);
         } catch (Throwable e) {
             LOGGER.error(e.toString());
-        }*/
+        }
     }
 
     private static void getXmlFromObject(Book book) {
@@ -78,8 +78,8 @@ public class App {
 
     private static void getBase64EncodedString(String inputString) {
         try {
-            String encodedString = //Base64.getEncoder().encodeToString(inputString.getBytes()); 
-            new BASE64Encoder().encode(inputString.getBytes());
+            String encodedString = Base64.getEncoder().encodeToString(inputString.getBytes()); 
+            //new BASE64Encoder().encode(inputString.getBytes());
             LOGGER.info("4. Base Encoded String: {}", encodedString);
         } catch (Throwable e) {
             LOGGER.error(e.toString());
